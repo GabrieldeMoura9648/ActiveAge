@@ -4,7 +4,7 @@
 
 Este repositório contém o código-fonte do **Active Age**, um projeto integrador que visa desenvolver uma plataforma de telessaúde especializada em geriatria. A solução busca simplificar a jornada de cuidado do paciente idoso, desde a busca e agendamento até a realização da teleconsulta.
 
-Este projeto foi desenvolvido como parte do 2º Semestre do curso de Análise e Desenvolvimento de Sistemas da Fatec Diadema - Luigi Papaiz.
+Este projeto foi desenvolvido como parte do 2º Semestre do curso de Desenvolvimento de Software Multiplataforma da Fatec Diadema - Luigi Papaiz.
 
 ---
 
@@ -60,7 +60,7 @@ Este projeto é dividido em duas partes principais: `frontend` (o que o usuário
 * **`cors`** (Para permitir a comunicação entre front e back-end)
 
 ### **Ambiente e Ferramentas**
-* **XAMPP** (Para gerenciamento local do servidor Apache e do banco de dados MySQL)
+* **XAMPP** (Ferramenta utilizada para rodar o banco de dados **MySQL**)
 * **phpMyAdmin** (Para administração visual do banco de dados)
 * **Git & GitHub** (Para versionamento de código)
 
@@ -68,72 +68,59 @@ Este projeto é dividido em duas partes principais: `frontend` (o que o usuário
 
 ## ▶️ Como Executar o Projeto
 
-Para executar este projeto localmente, você precisará ter o [Node.js](https://nodejs.org/) e o [XAMPP](https://www.apachefriends.org/pt_br/index.html) instalados.
+Para rodar este projeto com eficiência, automatizamos o processo de configuração. Certifique-se de ter o [Node.js](https://nodejs.org/) e o [XAMPP](https://www.apachefriends.org/pt_br/index.html) instalados em sua máquina.
 
-### 1. Pré-requisitos (Instalação)
-
-1.  **Node.js:** Instale a versão LTS do [Node.js](https://nodejs.org/).
-2.  **XAMPP:** Instale o [XAMPP](https://www.apachefriends.org/pt_br/index.html). Após a instalação, inicie o Painel de Controle do XAMPP e dê "Start" nos módulos **Apache** e **MySQL**.
-3.  **Verificação:** Garanta que ambos os módulos ficaram verdes. O MySQL utilizará a porta padrão `3306`. (Caso esta porta esteja ocupada, o XAMPP exibirá um erro e você precisará liberar a porta ou reconfigurá-lo).
+### 1. Pré-requisitos
+* **[Node.js](https://nodejs.org/):** Ambiente de execução do servidor.
+* **[XAMPP](https://www.apachefriends.org/pt_br/index.html):** Necessário para executar o serviço **MySQL**.
 
 ### 2. Clonar o Repositório
-
 ```bash
-git clone https://github.com/GuilhermeSilva-25/ActiveAge.git
+git clone [https://github.com/GabrieldeMoura9648/ActiveAge.git](https://github.com/GabrieldeMoura9648/ActiveAge.git)
+cd ActiveAge
+
 ```
 
-### 3. Configurar o Banco de Dados
+### 3. Configuração do Banco de Dados
 
-1.  Abra seu navegador e acesse o phpMyAdmin: `http://localhost/phpmyadmin`
-2.  No menu da esquerda, clique em **"Novo"** (ou "New").
-3.  Dê o nome ao banco de dados: `active_age_db`
-4.  No campo de Agrupamento (Collation), selecione: `utf8mb4_general_ci`
-5.  Clique em **"Criar"**.
-6.  Com o banco `active_age_db` selecionado, clique na aba **"Importar"** (ou "Import") no menu superior.
-7.  Clique em "Escolher arquivo" e selecione o arquivo `banco.sql` que está dentro da pasta `backend` do projeto (`backend/banco.sql`).
-8.  Clique em **"Executar"** (ou "Go") no final da página.
+1. Abra o Painel do XAMPP e inicie o módulo **MySQL**.
+2. Acesse o phpMyAdmin em `http://localhost/phpmyadmin`.
+3. No menu da esquerda, clique em **"Novo"** (ou "New").
+4. Dê o nome ao banco de dados: **`activeage`**.
+5. No campo de Agrupamento (Collation), selecione: `utf8mb4_general_ci`.
+6. Clique em **"Criar"**.
+7. Com o banco `activeage` selecionado, clique na aba **"Importar"** no menu superior.
+8. Selecione o arquivo `backend/schema.sql` e clique em **"Executar"** no final da página.
 
-*Ao final, você deverá ver uma mensagem de sucesso e as tabelas `usuarios`, `medico_detalhes`, `horarios_disponiveis`, e `agendamentos` aparecerão no menu da esquerda.*
+### 4. Configuração do Ambiente
 
-### 4. Configurar o Back-end
+1. Navegue até a pasta `backend/`.
+2. Faça uma cópia do arquivo `.env.example` e renomeie-o para `.env`.
+3. Abra o arquivo `.env` e preencha os campos `DB_USER` e `DB_PASSWORD` com as credenciais do seu MySQL local (geralmente `root` e senha vazia no XAMPP). Garanta que `DB_NAME` esteja como `activeage`.
 
-1.  Abra um terminal e navegue até a pasta do back-end:
-    ```bash
-    cd backend
-    ```
-2.  Instale as dependências:
-    ```bash
-    npm install
-    ```
+### 5. Primeira Execução
 
-3.  Crie um arquivo chamado `.env` na raiz da pasta `backend`.
-4.  Copie o conteúdo abaixo para dentro do seu `.env` (este arquivo é ignorado pelo Git):
-    ```ini
-    # Configuração do Banco de Dados (Padrão XAMPP)
-    DB_HOST=localhost
-    DB_USER=root
-    DB_PASSWORD=
-    DB_NAME=active_age_db
-    DB_PORT=3306
+Apenas na primeira vez, execute o script de instalação para preparar as dependências:
 
-    # Segredo do Token JWT
-    JWT_SECRET=meu_segredo_super_secreto_para_o_pi_2025
-    ```
+```bash
+bash setup.sh
 
-5.  Inicie o servidor back-end:
-    ```bash
-    npm run dev
-    ```
-    *Seu terminal deve mostrar: "Servidor rodando na porta 3000" e "Banco de dados conectado com sucesso!".*
+```
 
-### 5. Executar o Front-end
+### 6. Executando o Projeto
 
-1.  Abra o projeto no **VS Code**.
-2.  Instale a extensão [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
-3.  Clique com o botão direito no arquivo `frontend/index.html`.
-4.  Selecione **"Open with Live Server"**.
+Para iniciar o servidor, utilize o script de execução:
 
-Seu navegador abrirá automaticamente e a aplicação estará 100% funcional, conectando-se ao seu back-end local.
+```bash
+bash run.sh
+
+```
+
+*O servidor estará rodando na porta 3000.*
+
+### 7. Acessar o Front-end
+
+Abra o seu navegador e acesse a página do projeto. Certifique-se de que o backend está rodando no terminal.
 
 ---
 
