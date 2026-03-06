@@ -44,37 +44,35 @@ O MVP (Produto Mínimo Viável) da plataforma Active Age implementa os seguintes
 Este projeto é dividido em duas partes principais: `frontend` (o que o usuário vê no navegador) e `backend` (o "cérebro" que roda no servidor).
 
 ### **Front-end**
-* **HTML5**
-* **CSS3**
-* **JavaScript (ES6+)**
-* **Bootstrap 5** (Para design responsivo e componentes de UI)
-* **Fetch API** (Para comunicação com o back-end)
+* **HTML5**, **CSS3**, **JavaScript (ES6+)**
+* **Bootstrap 5** (Design responsivo)
+* **Fetch API** (Comunicação com o backend)
 
 ### **Back-end**
 * **Node.js** (Ambiente de execução)
-* **Express.js** (Framework para criar a API RESTful)
-* **MySQL** (Banco de dados relacional)
-* **`mysql2`** (Driver de conexão Node.js para MySQL)
-* **`bcrypt`** (Para criptografia de senhas)
-* **`jsonwebtoken` (JWT)** (Para autenticação e gerenciamento de sessão)
-* **`cors`** (Para permitir a comunicação entre front e back-end)
+* **Express.js** (Framework API)
+* **MySQL** (Banco de dados)
+* **`bcrypt`** (Segurança)
+* **`jsonwebtoken` (JWT)** (Autenticação)
 
 ### **Ambiente e Ferramentas**
-* **XAMPP** (Ferramenta utilizada para rodar o banco de dados **MySQL**)
-* **phpMyAdmin** (Para administração visual do banco de dados)
-* **Git & GitHub** (Para versionamento de código)
+* **XAMPP** (Gerenciamento de MySQL)
+* **phpMyAdmin** (Administração do banco)
+* **Git & GitHub** (Versionamento)
 
 ---
 
 ## ▶️ Como Executar o Projeto
 
-Para rodar este projeto com eficiência, automatizamos o processo de configuração. Certifique-se de ter o [Node.js](https://nodejs.org/) e o [XAMPP](https://www.apachefriends.org/pt_br/index.html) instalados em sua máquina.
+Para garantir que o projeto rode sem erros, siga as etapas abaixo:
 
 ### 1. Pré-requisitos
-* **[Node.js](https://nodejs.org/):** Ambiente de execução do servidor.
-* **[XAMPP](https://www.apachefriends.org/pt_br/index.html):** Necessário para executar o serviço **MySQL**.
+Certifique-se de ter instalado em sua máquina:
+* **[Node.js](https://nodejs.org/)**: Recomendado versão LTS.
+* **[XAMPP](https://www.apachefriends.org/pt_br/index.html)**: Para rodar o banco de dados MySQL.
 
 ### 2. Clonar o Repositório
+Abra seu terminal na pasta onde deseja salvar o projeto e execute:
 ```bash
 git clone [https://github.com/GabrieldeMoura9648/ActiveAge.git](https://github.com/GabrieldeMoura9648/ActiveAge.git)
 cd ActiveAge
@@ -83,24 +81,45 @@ cd ActiveAge
 
 ### 3. Configuração do Banco de Dados
 
-1. Abra o Painel do XAMPP e inicie o módulo **MySQL**.
-2. Acesse o phpMyAdmin em `http://localhost/phpmyadmin`.
-3. No menu da esquerda, clique em **"Novo"** (ou "New").
-4. Dê o nome ao banco de dados: **`activeage`**.
-5. No campo de Agrupamento (Collation), selecione: `utf8mb4_general_ci`.
-6. Clique em **"Criar"**.
-7. Com o banco `activeage` selecionado, clique na aba **"Importar"** no menu superior.
-8. Selecione o arquivo `backend/schema.sql` e clique em **"Executar"** no final da página.
+1. **Inicie o serviço MySQL:**
+* **Windows:** Abra o "XAMPP Control Panel", localize **MySQL** e clique em **"Start"**.
+* **Linux:** No terminal, digite `sudo /opt/lampp/lampp start` e digite sua senha.
 
-### 4. Configuração do Ambiente
+
+2. **Crie o Banco:**
+* Acesse `http://localhost/phpmyadmin` no navegador.
+* Clique em **"Novo"** (lado esquerdo).
+* Nome do banco: `activeage`.
+* Collation: `utf8mb4_general_ci`.
+* Clique em **"Criar"**.
+
+
+3. **Importe os dados:**
+* Com o banco `activeage` selecionado, clique na aba **"Importar"** (topo da página).
+* Selecione o arquivo `backend/schema.sql` do seu projeto.
+* Clique em **"Executar"**.
+
+
+
+### 4. Configuração das Variáveis de Ambiente
 
 1. Navegue até a pasta `backend/`.
-2. Faça uma cópia do arquivo `.env.example` e renomeie-o para `.env`.
-3. Abra o arquivo `.env` e preencha os campos `DB_USER` e `DB_PASSWORD` com as credenciais do seu MySQL local (geralmente `root` e senha vazia no XAMPP). Garanta que `DB_NAME` esteja como `activeage`.
+2. O projeto utiliza um arquivo `.env` para segurança. Localize o arquivo `backend/.env.example` e faça uma cópia dele renomeando para `backend/.env`.
+3. Abra este novo arquivo `.env` e confirme se os dados estão assim:
+```ini
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=activeage
+DB_PORT=3306
 
-### 5. Primeira Execução
+```
 
-Apenas na primeira vez, execute o script de instalação para preparar as dependências:
+
+
+### 5. Primeira Instalação
+
+Apenas na primeira vez, você precisa instalar as bibliotecas necessárias. No terminal, na raiz do projeto, execute:
 
 ```bash
 bash setup.sh
@@ -109,7 +128,7 @@ bash setup.sh
 
 ### 6. Executando o Projeto
 
-Para iniciar o servidor, utilize o script de execução:
+Para iniciar o servidor, execute:
 
 ```bash
 bash run.sh
@@ -118,9 +137,9 @@ bash run.sh
 
 *O servidor estará rodando na porta 3000.*
 
-### 7. Acessar o Front-end
+### 7. Acessar o Sistema
 
-Abra o seu navegador e acesse a página do projeto. Certifique-se de que o backend está rodando no terminal.
+Abra seu navegador e acesse: `http://localhost:3000` (ou o endereço configurado no seu front-end).
 
 ---
 
